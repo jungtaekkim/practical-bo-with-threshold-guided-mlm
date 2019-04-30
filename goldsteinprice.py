@@ -58,9 +58,6 @@ arr_Y, arr_time = main(str_method, str_mlm_method, str_ms_method, INT_BO, INT_IT
 dict_ = {'arr_Y': arr_Y, 'arr_time': arr_time}
 np.save('./results/{}_{}_bo_{}_iter_{}_init_{}.npy'.format(STR_FUN_TARGET, str_method, INT_BO, INT_ITER, INT_INIT), dict_)
 
-
-# large RANGE_SIGNAL = [[1e-2, 1e3]] RANGE_LENGTHSCALES = [[1e-2, 1e3]] RANGE_NOISE = [[1e-3, 1e1]]
-# small RANGE_SIGNAL = [[1e-2, 1e1]] RANGE_LENGTHSCALES = [[1e-2, 1e1]] RANGE_NOISE = [[1e-3, 1e-1]]
 str_method = 'L-BFGS-B'
 
 arr_Y, arr_time = main(str_method, str_mlm_method, str_ms_method, INT_BO, INT_ITER, INT_INIT)
@@ -76,9 +73,6 @@ arr_Y, arr_time = main(str_method, str_mlm_method, str_ms_method, INT_BO, INT_IT
 dict_ = {'arr_Y': arr_Y, 'arr_time': arr_time}
 np.save('./results/{}_{}_bo_{}_iter_{}_init_{}_loocv.npy'.format(STR_FUN_TARGET, str_method, INT_BO, INT_ITER, INT_INIT), dict_)
 
-
-# large RANGE_SIGNAL = [[1e-2, 1e3]] RANGE_LENGTHSCALES = [[1e-2, 1e3]] RANGE_NOISE = [[1e-3, 1e1]]
-# small RANGE_SIGNAL = [[1e-2, 1e1]] RANGE_LENGTHSCALES = [[1e-2, 1e1]] RANGE_NOISE = [[1e-3, 1e-1]]
 str_method = 'L-BFGS-B'
 
 arr_Y, arr_time = main(str_method, str_mlm_method, str_ms_method, INT_BO, INT_ITER, INT_INIT)
@@ -94,9 +88,6 @@ arr_Y, arr_time = main(str_method, str_mlm_method, str_ms_method, INT_BO, INT_IT
 dict_ = {'arr_Y': arr_Y, 'arr_time': arr_time}
 np.save('./results/{}_{}_bo_{}_iter_{}_init_{}_converged.npy'.format(STR_FUN_TARGET, str_method, INT_BO, INT_ITER, INT_INIT), dict_)
 
-
-# large RANGE_SIGNAL = [[1e-2, 1e3]] RANGE_LENGTHSCALES = [[1e-2, 1e3]] RANGE_NOISE = [[1e-3, 1e1]]
-# small RANGE_SIGNAL = [[1e-2, 1e1]] RANGE_LENGTHSCALES = [[1e-2, 1e1]] RANGE_NOISE = [[1e-3, 1e-1]]
 str_method = 'L-BFGS-B'
 
 arr_Y, arr_time = main(str_method, str_mlm_method, str_ms_method, INT_BO, INT_ITER, INT_INIT)

@@ -2,29 +2,46 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 
+import sklearn.datasets as skld
+import sklearn.model_selection as sklms
+import sklearn.linear_model as skllm
+
 from bayeso import bo
-from bayeso import benchmarks
 from bayeso.utils import utils_bo
 from bayeso.utils import utils_common
 from bayeso.utils import utils_plotting
-from bayeso.utils import utils_benchmarks
 from bayeso import constants
 
-INFO_TARGET = benchmarks.INFO_EGGHOLDER
-STR_FUN_TARGET = 'eggholder'
-INT_BO = 2
-INT_ITER = 5
+STR_FUN_TARGET = 'real2'
+INT_BO = 20
+INT_ITER = 50
 INT_INIT = 3
 
+data = skld.fetch_california_housing()
+inputs = data.data
+targets = data.target
+
+print(inputs.shape)
+print(targets.shape)
+
+X_train, X_test, y_train, y_test = sklms.train_test_split(inputs, targets, test_size=0.2, random_state=42)
 
 def fun_target(X):
-    return benchmarks.eggholder(X)
+    model_ = skllm.ElasticNet(alpha=float(X[0]), l1_ratio=float(X[1]), max_iter=int(X[2]))
+    model_.fit(X_train, y_train)
+    y_pred = model_.predict(X_test)
+
+    score_ = 1.0 - model_.score(X_test, y_test)
+    print(score_)
+    return score_
 
 def main(str_optimizer_method_gp, str_mlm_method, str_ms_method, int_bo, int_iter, int_init):    
-    int_dim = 2
+    bounds = np.array([
+        [0.1, 10],
+        [0.001, 1],
+        [1000, 10000],
+    ])
 
-    bounds = utils_benchmarks.get_bounds(INFO_TARGET, int_dim)
-    
     list_Y = []
     list_time = []
     for ind_bo in range(0, int_bo):
@@ -46,6 +63,7 @@ def main(str_optimizer_method_gp, str_mlm_method, str_ms_method, int_bo, int_ite
     print(np.array2string(arr_time, separator=','))
     utils_plotting.plot_minimum(arr_Y, [STR_FUN_TARGET], int_init, True, path_save=None, str_postfix=None)
     utils_plotting.plot_minimum_time(arr_time, arr_Y, [STR_FUN_TARGET], int_init, True, path_save=None, str_postfix=None)
+
     return arr_Y, arr_time
 
 
